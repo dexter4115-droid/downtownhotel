@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOWN TOWN NORTH HORR HOTEL</title>
+    <!-- Previous CSS styles remain the same -->
+    <style>
+         body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(home.jpeg);
+            background-size: cover;
+            background-position: center;
+            animation: zoomOut 10s infinite;
+            z-index: 0;
+        }
+
+        @keyframes zoomOut {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
+        }
+
+        .tabs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background: #11c03d;
+            padding: 10px;
+            z-index: 2;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background: #e0e0e0;
+            border: 1px solid #ccc;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .tab:hover {
+            background: #ddd;
+        }
+
+        .tab.active {
+            background: #fff;
+            font-weight: bold;
+        }
+
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding: 80px 20px 20px 20px;
+            box-sizing: border-box;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section.active {
+            display: flex;
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #home {
+            background: url(home.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+
+        #about {
+            background: url(huts.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+
+        #contact {
+            background: url(home.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+
+        #booking {
+            background: url(booknow.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+
+        .content-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        .content-container p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        form {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background: #11c03d;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #0ea334;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            .content-container h2 {
+                font-size: 2em;
+            }
+
+            .content-container p {
+                font-size: 1em;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section.active .content-container {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        #confirmationMessage {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        #confirmationMessage div {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <div class="tabs">
+        <div class="tab active" onclick="showSection('home')">Home</div>
+        <div class="tab" onclick="showSection('about')">About Us</div>
+        <div class="tab" onclick="showSection('contact')">Contact</div>
+        <div class="tab" onclick="showSection('booking')">Book Now</div>
+    </div>
+
+    <div id="home" class="section active">
+        <div class="content-container">
+            <h2>Welcome to Downtown North Horr Hotel</h2>
+            <p>Experience luxury and comfort in the heart of North Horr.</p>
+            <p>Your perfect getaway destination awaits you.</p>
+        </div>
+    </div>
+
+    <div id="about" class="section">
+        <div class="content-container">
+            <h2>About Us</h2>
+            <p>Downtown North Horr Hotel is a premier accommodation destination offering world-class amenities and services.</p>
+            <p>Our commitment to excellence and customer satisfaction makes us the preferred choice for both business and leisure travelers.</p>
+        </div>
+    </div>
+
+    <div id="contact" class="section">
+        <div class="content-container">
+            <h2>Contact Us</h2>
+            <p>Email: info@downtownnorthhorr.com</p>
+            <p>Phone: +254 724 103 915</p>
+            <p>Location: North Horr, Marsabit County</p>
+            <p>Operating Hours: 24/7</p>
+        </div>
+    </div>
+
+    <div id="booking" class="section">
+        <div class="content-container">
+            <h2>Book Your Stay</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" required placeholder="Enter your phone number">
+                </div>
+
+                <div class="form-group">
+                    <label for="checkin">Check-in Date:</label>
+                    <input type="date" id="checkin" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkout">Check-out Date:</label>
+                    <input type="date" id="checkout" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rooms">Number of Rooms:</label>
+                    <input type="number" id="rooms" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="adults">Number of Adults:</label>
+                    <input type="number" id="adults" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="children">Number of Children:</label>
+                    <input type="number" id="children" min="0" value="0">
+                </div>
+
+                <input type="submit" value="Book Now">
+            </form>
+            <div id="confirmationMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Set the active tab
+            const activeTab = Array.from(tabs).find(tab => 
+                tab.textContent.toLowerCase().includes(sectionId));
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const rooms = document.getElementById('rooms').value;
+            const adults = document.getElementById('adults').value;
+            const children = document.getElementById('children').value;
+
+            // Display confirmation message
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            confirmationMessage.innerHTML = `
+                <div>
+                    <h3 style="color: #11c03d;">Booking Confirmation</h3>
+                    <p>Thank you, ${name}!</p>
+                    <p>Your booking details:</p>
+                    <ul>
+                        <li>Check-in: ${checkin}</li>
+                        <li>Check-out: ${checkout}</li>
+                        <li>Rooms: ${rooms}</li>
+                        <li>Adults: ${adults}</li>
+                        <li>Children: ${children}</li>
+                    </ul>
+                    <p>A confirmation email will be sent to ${email}</p>
+                </div>
+            `;
+
+            // Reset form
+            this.reset();
+        });
+
+        // Set minimum dates for check-in and check-out
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('checkin').min = today;
+        document.getElementById('checkout').min = today;
+    </script>
+</body>
+</html>
